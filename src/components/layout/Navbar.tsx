@@ -11,6 +11,8 @@ const Navbar = () => {
     { path: "/", label: "Home", icon: BookOpen },
     { path: "/dashboard", label: "Dashboard", icon: BookOpen },
     { path: "/upload", label: "Upload", icon: BookOpen },
+    { path: "/about", label: "About", icon: BookOpen },
+    { path: "/contact", label: "Contact", icon: BookOpen },
     { path: "/profile", label: "Profile", icon: User },
     { path: "/settings", label: "Settings", icon: Settings },
   ];
