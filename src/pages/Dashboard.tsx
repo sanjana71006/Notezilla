@@ -158,7 +158,6 @@ const Dashboard = () => {
                     <SelectValue placeholder="Select year" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">All Years</SelectItem>
                     {years.map(year => (
                       <SelectItem key={year.value} value={year.value}>
                         {year.label}
@@ -175,7 +174,6 @@ const Dashboard = () => {
                     <SelectValue placeholder="Select semester" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">All Semesters</SelectItem>
                     {[1, 2, 3, 4, 5, 6, 7, 8].map(sem => (
                       <SelectItem key={sem} value={sem.toString()}>
                         Semester {sem}
@@ -201,7 +199,6 @@ const Dashboard = () => {
                     <SelectValue placeholder="Select exam type" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">All Types</SelectItem>
                     {examTypes.map(type => (
                       <SelectItem key={type} value={type}>
                         {type}
