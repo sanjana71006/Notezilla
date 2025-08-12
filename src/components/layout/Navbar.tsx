@@ -1,13 +1,11 @@
-import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
 import { BookOpen, User, Settings, Menu } from "lucide-react";
+import { useState } from "react";
 
 const Navbar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
-  const { user, signOut } = useAuth();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navItems = [
     { path: "/", label: "Home", icon: BookOpen },
@@ -48,24 +46,11 @@ const Navbar = () => {
                 {item.label}
               </Link>
             ))}
-            {user ? (
-              <div className="flex items-center space-x-2">
-                <Link to="/dashboard">
-                  <Button variant="outline" size="sm">
-                    Dashboard
-                  </Button>
-                </Link>
-                <Button variant="outline" size="sm" onClick={signOut}>
-                  Logout
-                </Button>
-              </div>
-            ) : (
-              <Link to="/login">
-                <Button variant="outline" size="sm">
-                  Login
-                </Button>
-              </Link>
-            )}
+            <Link to="/login">
+              <Button variant="outline" size="sm">
+                Login
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -98,24 +83,11 @@ const Navbar = () => {
                   {item.label}
                 </Link>
               ))}
-              {user ? (
-                <div className="space-y-2 mt-2">
-                  <Link to="/dashboard" onClick={() => setIsMenuOpen(false)}>
-                    <Button variant="outline" size="sm" className="w-full">
-                      Dashboard
-                    </Button>
-                  </Link>
-                  <Button variant="outline" size="sm" className="w-full" onClick={() => {signOut(); setIsMenuOpen(false)}}>
-                    Logout
-                  </Button>
-                </div>
-              ) : (
-                <Link to="/login" onClick={() => setIsMenuOpen(false)}>
-                  <Button variant="outline" size="sm" className="w-full mt-2">
-                    Login
-                  </Button>
-                </Link>
-              )}
+              <Link to="/login" onClick={() => setIsMenuOpen(false)}>
+                <Button variant="outline" size="sm" className="w-full mt-2">
+                  Login
+                </Button>
+              </Link>
             </div>
           </div>
         )}

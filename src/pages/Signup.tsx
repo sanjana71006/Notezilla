@@ -1,7 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "@/contexts/AuthContext";
-import { useToast } from "@/hooks/use-toast";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -16,56 +14,13 @@ const Signup = () => {
     password: "",
     confirmPassword: "",
     year: "",
-    course: "",
+    course: ""
   });
-  const [loading, setLoading] = useState(false);
-  const { signUp } = useAuth();
-  const navigate = useNavigate();
-  const { toast } = useToast();
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
-    if (formData.password !== formData.confirmPassword) {
-      toast({
-        title: "Error",
-        description: "Passwords do not match",
-        variant: "destructive",
-      });
-      return;
-    }
-
-    setLoading(true);
-
-    try {
-      const { error } = await signUp(formData.email, formData.password, {
-        name: formData.name,
-        year: formData.year,
-        course: formData.course,
-      });
-      
-      if (error) {
-        toast({
-          title: "Error",
-          description: error.message,
-          variant: "destructive",
-        });
-      } else {
-        toast({
-          title: "Success",
-          description: "Account created successfully! Please check your email to verify your account.",
-        });
-        navigate("/login");
-      }
-    } catch (error) {
-      toast({
-        title: "Error",
-        description: "An unexpected error occurred",
-        variant: "destructive",
-      });
-    } finally {
-      setLoading(false);
-    }
+    // TODO: Implement signup logic with Supabase
+    console.log("Signup attempt:", formData);
   };
 
   const handleInputChange = (field: string, value: string) => {
@@ -211,8 +166,8 @@ const Signup = () => {
                 </span>
               </div>
 
-              <Button type="submit" disabled={loading} className="w-full bg-gradient-to-r from-primary to-academic-blue hover:opacity-90">
-                {loading ? "Creating Account..." : "Create Account"}
+              <Button type="submit" className="w-full bg-gradient-to-r from-primary to-academic-blue hover:opacity-90">
+                Create Account
               </Button>
             </form>
 
